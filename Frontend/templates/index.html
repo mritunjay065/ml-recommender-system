@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch - AI Movie Recommendations</title>
+    <meta name="description" content="Discover your next favorite movie with AI-powered personalized recommendations">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">🎬</span>
+                    CineMatch
+                </h1>
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for movies..."
+                        autocomplete="off">
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Discover Your Next Favorite Movie</h2>
+                <p class="hero-subtitle">AI-powered recommendations based on 5000+ movies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-group">
+                    <h3 class="filter-label">⭐ Rating</h3>
+                    <div class="filter-chips" id="ratingFilters">
+                        <button class="filter-chip active" data-rating="0">All</button>
+                        <button class="filter-chip" data-rating="6">6+</button>
+                        <button class="filter-chip" data-rating="7">7+</button>
+                        <button class="filter-chip" data-rating="8">8+</button>
+                        <button class="filter-chip premium" data-rating="9">9+ 🔥</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3 class="filter-label">🎭 Genre</h3>
+                    <div class="filter-chips genre-chips" id="genreFilters">
+                        <button class="filter-chip genre-chip active" data-genre="all">All</button>
+                        <button class="filter-chip genre-chip" data-genre="action">Action</button>
+                        <button class="filter-chip genre-chip" data-genre="comedy">Comedy</button>
+                        <button class="filter-chip genre-chip" data-genre="drama">Drama</button>
+                        <button class="filter-chip genre-chip" data-genre="horror">Horror</button>
+                        <button class="filter-chip genre-chip" data-genre="romance">Romance</button>
+                        <button class="filter-chip genre-chip" data-genre="science fiction">Sci-Fi</button>
+                        <button class="filter-chip genre-chip" data-genre="thriller">Thriller</button>
+                        <button class="filter-chip genre-chip" data-genre="animation">Animation</button>
+                        <button class="filter-chip genre-chip" data-genre="adventure">Adventure</button>
+                    </div>
+                </div>
+                <div class="filter-stats">
+                    <span id="movieCount">0</span> movies found
+                </div>
+            </section>
+
+            <!-- Recommendations Section -->
+            <section id="recommendationsSection" class="section hidden">
+                <div class="section-header">
+                    <h2 class="section-title">Recommendations for <span id="selectedMovie"></span></h2>
+                    <button id="clearBtn" class="clear-btn">Clear</button>
+                </div>
+                <div id="recommendationsGrid" class="movie-grid"></div>
+            </section>
+
+            <!-- Featured Movies Section -->
+            <section class="section">
+                <h2 class="section-title">Featured Movies</h2>
+                <div id="moviesGrid" class="movie-grid"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Movie Detail Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <div class="modal-info">
+                    <span class="rating" id="modalRating"></span>
+                    <span class="popularity" id="modalPopularity"></span>
+                </div>
+                <p id="modalOverview" class="modal-overview"></p>
+                <button id="getRecommendationsBtn" class="btn-primary">Get Recommendations</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
